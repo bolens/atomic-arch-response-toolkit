@@ -12,7 +12,7 @@ All notable changes to **aur-response-toolkit** are documented here.
 
 ### Changed
 - **fish_indent** — formatting pass across Fish scripts (fishcheck FC1001)
-- **`aur_ss_tun_lines`** — return success when `ss`/`netstat`/`lsof` exist but cannot probe (CI containers)
+- **`aur_hostname`** — fall back to `uname -n` when `hostname` is absent (minimal Arch / CI containers)
 
 ## 1.9.0
 
