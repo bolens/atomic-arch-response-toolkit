@@ -27,19 +27,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y fish curl jq findutils coreutils grep
 
-      - name: Cache fishcheck
-        uses: actions/cache@v4
-        id: fishcheck-cache
-        with:
-          path: ~/.local/bin/fishcheck
-          key: fishcheck-v1
-
       - name: Install fishcheck
-        if: steps.fishcheck-cache.outputs.cache-hit != 'true'
-        run: git clone --depth 1 https://github.com/mattmc3/fishcheck ~/.local/bin/fishcheck
-
-      - name: Add fishcheck to PATH
-        run: echo "$HOME/.local/bin/fishcheck" >> "$GITHUB_PATH"
+        run: git clone --depth 1 https://github.com/mattmc3/fishcheck tools/fishcheck
 
       - name: Lint Fish scripts
         run: fish lint.fish
@@ -58,19 +47,8 @@ jobs:
       - name: Install dependencies
         run: pacman -Sy --noconfirm fish curl jq findutils coreutils grep git iproute2 procps-ng zstd
 
-      - name: Cache fishcheck
-        uses: actions/cache@v4
-        id: fishcheck-cache
-        with:
-          path: ~/.local/bin/fishcheck
-          key: fishcheck-v1
-
       - name: Install fishcheck
-        if: steps.fishcheck-cache.outputs.cache-hit != 'true'
-        run: git clone --depth 1 https://github.com/mattmc3/fishcheck ~/.local/bin/fishcheck
-
-      - name: Add fishcheck to PATH
-        run: echo "$HOME/.local/bin/fishcheck" >> "$GITHUB_PATH"
+        run: git clone --depth 1 https://github.com/mattmc3/fishcheck tools/fishcheck
 
       - name: Lint Fish scripts
         run: fish lint.fish
